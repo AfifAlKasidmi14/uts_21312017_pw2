@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('judul')
-	Daftar Film
+	Daftar Peran
 @endsection
 
 @push('script')
@@ -18,26 +18,27 @@
 @endpush
 
 @section('content')
-<a class="btn btn-secondary mb-3" href="/cast/create">Tambah Data</a>
+<a class="btn btn-secondary mb-3" href="/peran/create">Tambah Data</a>
 <table class="table" id="example1">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Film</th>
+        <th scope="col">Cast</th>
         <th scope="col">Nama</th>
-        <th scope="col">Umur</th>
-        <th scope="col">Bio</th>
         <th scope="col">Action</th>
+      </tr>
     </thead>
     <tbody>
-        @forelse ($cast as $key => $item)
+        @forelse ($peran as $key => $item)
         <tr>
             <td>{{$key + 1}}</td>
+            <td>{{$item->film}}</td>
+            <td>{{$item->cast}}</td>
             <td>{{$item->nama}}</td>
-            <td>{{$item->umur}}</td>
-            <td>{{$item->bio}}</td>
             <td>
-                <form action="/cast/{{$item->id}}" method="POST">
-                    <a href="/cast/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
+                <form action="/peran/{{$item->id}}" method="POST">
+                    <a href="/peran/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
                     @csrf
                     @method('delete')
                     <button type="submit" onclick="return confirm('Apakah anda yakin mau menghapus data ini?')" class="btn btn-danger btn-sm">Hapus</button>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CastController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\PeranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,27 @@ Route::get('/datatable', function () {
 
 // CRUD CAST
 Route::get('/cast', [CastController::class,'index']);
+Route::get('/cast/create', [CastController::class, 'create']);
+Route::post('/cast', [CastController::class, 'store']);
 
+Route::get('/cast/{cast_id}/edit', [CastController::class, 'edit']);
+Route::put('/cast/{cast_id}/', [CastController::class, 'update']);
+Route::delete('/cast/{cast_id}/', [CastController::class, 'destroy']);
 
+// CRUD FILM
+Route::get('/film', [FilmController::class,'index']);
+Route::get('/film/create', [FilmController::class, 'create']);
+Route::post('/film', [FilmController::class, 'store']);
 
+Route::get('/film/{film_id}/edit', [FilmController::class, 'edit']);
+Route::put('/film/{film_id}/', [FilmController::class, 'update']);
+Route::delete('/film/{film_id}/', [FilmController::class, 'destroy']);
+
+// CRUD Peran
+Route::get('/peran', [PeranController::class,'index']);
+Route::get('/peran/create', [PeranController::class, 'create']);
+Route::post('/peran', [PeranController::class, 'store']);
+
+Route::get('/peran/{peran_id}/edit', [PeranController::class, 'edit']);
+Route::put('/peran/{peran_id}/', [PeranController::class, 'update']);
+Route::delete('/peran/{peran_id}/', [PeranController::class, 'destroy']);

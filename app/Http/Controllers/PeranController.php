@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Models\Peran;
+use App\Models\Film;
 use App\Models\Cast;
-use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facedes\Alert;
 
-
-class CastController extends Controller
+class PeranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class CastController extends Controller
      */
     public function index()
     {
-       $cast = Cast::all();
-       return view('cast.index',compact('cast'));
+       $peran = Peran::all();
+       return view('peran.index',compact('peran'));
     }
 
     /**
@@ -28,7 +30,7 @@ class CastController extends Controller
     public function create()
     {
         //
-        return view('Cast.create');
+        return view('Peran.create');
     }
 
     /**
@@ -39,23 +41,22 @@ class CastController extends Controller
      */
     public function store(Request $request)
     {
-        $cast = new Cast;
+        $peran = new Peran;
 
         $request->validate([
-            'nama' => 'required',
-            'umur' => 'required',
-            'bio' => 'required',
+            'Film' => 'required',
+            'Cast' => 'required',
+            'Nama' => 'required',
         ]);
 
-        $cast->nama = $request->nama;
-        $cast->umur = $request->umur;
-        $cast->bio = $request->bio;
-
-        $simpan = $cast->save();
+        $peran->film = $request->film;
+        $peran->cast = $request->cast;
+        $peran->nama = $request->nama;
+        $simpan = $peran->save();
 
         if($simpan) {
             Alert::success('Success', 'Data berhasil ditambah');
-            return redirect('/cast');
+            return redirect('/peran');
         } else {
             Alert::error('Failed', 'Data gagal ditambah');
         }
@@ -80,9 +81,9 @@ class CastController extends Controller
      */
     public function edit($id)
     {
-        $cast = Cast::where('id',$id)->first();
+        $peran = Peran::where('id',$id)->first();
 
-        return view('cast.edit', compact('cast'));
+        return view('peran.edit', compact('peran'));
     }
 
     /**
@@ -94,26 +95,27 @@ class CastController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
-            'nama' => 'required',
-            'umur' => 'required',
-            'bio' => 'required',
+            'Film' => 'required',
+            'Cast' => 'required',
+            'Nama' => 'required',
         ]);
 
-        $cast = Cast::find($id);
-        $cast->nama = $request->nama;
-        $cast->umur = $request->umur;
-        $cast->bio = $request->bio;
+        $peran->film = $request->film;
+        $peran->cast = $request->cast;
+        $peran->nama = $request->nama;
+        $simpan = $peran->save();
 
-        $ubah = $cast->save();
+        $ubah = $peran->save();
         if($ubah) {
             Alert::success('Success', 'Data berhasil diubah');
-            return redirect('/cast');
+            return redirect('/peran');
         } else {
             Alert::error('Failed', 'Data gagal diubah');
         }
 
-        return redirect('/cast');
+        return redirect('/peran');
     }
 
     /**
@@ -124,12 +126,12 @@ class CastController extends Controller
      */
     public function destroy($id)
     {
-        $cast = Cast::find($id);
+        $peran = Peran::find($id);
 
-        $hapus = $cast -> delete();
+        $hapus = $peran -> delete();
         if($hapus) {
             Alert::success('Success', 'Data berhasil dihapus');
-            return redirect('/cast');
+            return redirect('/peran');
         } else {
             Alert::error('Failed', 'Data gagal dihapus');
         }

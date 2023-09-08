@@ -88,9 +88,9 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
+      <b>Version</b> IF GAB 1
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023 <a href="https://adminlte.io">Afif Al-Kasidmi (21312017)</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -109,6 +109,8 @@
 <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+
+@include('sweetalert::alert')
 
 @stack('script')
 
